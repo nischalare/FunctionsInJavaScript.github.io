@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <title>Definingfunctions</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Defining functions</h1>
+            <p class="lead">A function definition (also called a function declaration, or function statement) consists of the function keyword followed by The name of the function,A list of parameters to the function, enclosed in parentheses and separated by commas, The JavaScript statements that define the function, enclosed in curly brackets, {...} </p>
+            <hr class="my-4">
+            <p>For example, the following code defines a simple function named square:</p>
+            <ul>
+                <li>function square(number) {</li>
+                <li>&nbsp&nbsp return number * number;</li>
+                <li>}</li>
+            </ul>
+            <hr>
+            <h4>Function expressions</h4>
+            <p>While the function declaration above is syntactically a statement, functions can also be created by a function expression.</p>
+            <p>Such a function can be anonymous; it does not have to have a name. For example, the function square could have been defined as:</p>
+            <ul>
+                <li>const square = function(number) { return number * number }</li>
+                <li>var x = square(4) // x gets the value 16</li>
+            </ul>
+            <hr>
+            <h4>Calling functions</h4>
+            <p>Defining a function does not execute it. Defining it names the function and specifies what to do when the function is called.</p>
+            <p>Calling the function actually performs the specified actions with the indicated parameters. For example, if you define the function square, you could call it as follows:</p>
+            <ul>
+                <li>square(5);</li>
+                <li></li>
+                <li>console.log(square(5));</li>
+                <li>function square(n) { return n * n }</li>
+            </ul>
+            <hr>
+            <h4>Function scope</h4>
+            <p>Variables defined inside a function cannot be accessed from anywhere outside the function, because the variable is defined only in the scope of the function.</p>
+            <p>However, a function can access all variables and functions defined inside the scope in which it is defined.</p>
+            <ul>
+                <li>// The following variables are defined in the global scope</li>
+                <li>var num1 = 20,</li>
+                <li>&nbsp&nbsp num2 = 3,</li>
+                <li>&nbsp&nbsp name = 'Chamakh';</li>
+                <li></li>
+                <li>// This function is defined in the global scope</li>
+                <li>function multiply() {</li>
+                <li>&nbsp&nbsp return num1 * num2;</li>
+                <li>}</li>
+                <li></li>
+                <li>multiply(); // Returns 60</li>
+                <li></li>
+                <li>// A nested function example</li>
+                <li>function getScore() {</li>
+                <li>&nbsp&nbsp var num1 = 2,</li>
+                <li>&nbsp&nbsp&nbsp num2 = 3;</li>
+                <li></li>
+                <li>function add() {</li>
+                <li>&nbsp&nbsp return name + ' scored ' + (num1 + num2);</li>
+                <li> }</li>
+                <li></li>
+                <li> return add();</li>
+                <li>}</li>
+                <li></li>
+                <li>getScore(); // Returns "Chamakh scored 5"</li>
+            </ul>
+            <hr>
+            <h4>Scope and the function stack</h4>
+            <h5>Recursion</h5>
+            <p>A function can refer to and call itself. There are three ways for a function to refer to itself:</p>
+            <ol>
+                <li>The function's name</li>
+                <li>arguments.callee</li>
+                <li>An in-scope variable that refers to the function</li>
+            </ol>
+            <p></p>
+            <ul>
+                <li>var foo = function bar() {</li>
+                <li>&nbsp&nbsp // statements go here</li>
+                <li>}</li>
+            </ul>
+            <h4>Nested functions and closures</h4>
+            <p>You may nest a function within another function. The nested (inner) function is private to its containing (outer) function.</p>
+            <p>It also forms a closure. A closure is an expression (most commonly, a function) that can have free variables together with an environment that binds those variables (that "closes" the expression).</p>
+            <ul>The following example shows nested functions:
+                <li>function addSquares(a, b) {</li>
+                <li>&nbsp&nbsp  function square(x) {</li>
+                <li>&nbsp&nbsp&nbsp return x * x;</li>
+                <li>&nbsp&nbsp }</li>
+                <li>&nbsp&nbsp return square(a) + square(b);</li>
+                <li>}</li>
+                <li>a = addSquares(2, 3); // returns 13</li>
+                <li>b = addSquares(3, 4); // returns 25</li>
+                <li>c = addSquares(4, 5); // returns 41</li>
+            </ul>
+            <hr>
+            <ul>Functions can be multiply-nested. For example:
+                <li>A function (A) contains a function (B), which itself contains a function (C).</li>
+                <li>Both functions B and C form closures here. So, B can access A, and C can access B.</li>
+                <li>In addition, since C can access B which can access A, C can also access A.</li>
+            </ul>
+            <p>Thus, the closures can contain multiple scopes; they recursively contain the scope of the functions containing it. This is called scope chaining. </p>
+            <ul>Consider the following example:
+                <li>function A(x) {</li>
+                <li>&nbsp&nbsp function B(y) {</li>
+                <li>&nbsp&nbsp&nbsp&nbsp function C(z) {</li>
+                <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp console.log(x + y + z);</li>
+                <li>&nbsp&nbsp&nbsp&nbsp  }</li>
+                <li>&nbsp&nbsp&nbsp&nbsp C(3);</li>
+                <li>&nbsp&nbsp }</li>
+                <li>&nbsp&nbsp B(2);</li>
+                <li>}</li>
+                <li>A(1); // logs 6 (1 + 2 + 3)</li>
+            </ul>
+            <hr>
+            <h4>Name conflicts</h4>
+            <p>When two arguments or variables in the scopes of a closure have the same name, there is a name conflict.</p>
+            <p>More nested scopes take precedence.</p>
+            <p>So, the inner-most scope takes the highest precedence, while the outer-most scope takes the lowest.</p>
+            <p>This is the scope chain.</p>
+            <p> The first on the chain is the inner-most scope, and the last is the outer-most scope.</p>
+            <ul>Consider the following:
+                <li>function outside() {</li>
+                <li>&nbsp&nbsp var x = 5;</li>
+                <li>&nbsp&nbsp function inside(x) {</li>
+                <li>&nbsp&nbsp&nbsp  return x * 2;</li>
+                <li>&nbsp&nbsp  }</li>
+                <li>&nbsp&nbsp return inside;</li>
+                <li>}</li>
+                <li></li>
+                <li>outside()(10); // returns 20 instead of 10</li>
+            </ul>
+            <hr>
+            <h4>Closures</h4>
+            <p>Closures are one of the most powerful features of JavaScript. </p>
+            <p> JavaScript allows for the nesting of functions and grants the inner function full access to all the variables and functions defined inside the outer function (and all other variables and functions that the outer function has access to).</p>
+            <p>A closure is created when the inner function is somehow made available to any scope outside the outer function.</p>
+            <ul>
+                <li>var pet = function(name) {   // The outer function defines a variable called "name"</li>
+                <li>&nbsp&nbsp var getName = function() {</li>
+                <li>&nbsp&nbsp&nbsp return name;             // The inner function has access to the "name" variable of the outer</li>
+                <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp //function</li>
+                <li>&nbsp&nbsp }</li>
+                <li>&nbsp&nbsp return getName;</li>
+                <li>}</li>
+                <li>myPet = pet('Vivie');</li>
+                <li></li>
+                <li>myPet();                     // Returns "Vivie"</li>
+            </ul>
+            <hr>
+            <h4>Using the arguments object</h4>
+            <p>The arguments of a function are maintained in an array-like object. </p>
+            <p>Within a function, you can address the arguments passed to it as follows:</p>
+            <ul>
+                <li>arguments[i]</li>
+            </ul>
+            <p>where i is the ordinal number of the argument, starting at 0.</p>
+            <p>So, the first argument passed to a function would be arguments[0]. </p>
+            <p>The total number of arguments is indicated by arguments.length.</p>
+            <hr>
+            <h4>Function parameters</h4>
+            <p>Starting with ECMAScript 2015, there are two new kinds of parameters: default parameters and rest parameters.</p>
+            <h5>Default parameters</h5>
+            <p>In JavaScript, parameters of functions default to undefined.</p>
+            <p> However, in some situations it might be useful to set a different default value. </p>
+            <p> This is exactly what default parameters do.</p>
+            <ul>
+                <li>function multiply(a, b) {</li>
+                <li>&nbsp&nbsp b = typeof b !== 'undefined' ?  b : 1;</li>
+                <li></li>
+                <li>&nbsp&nbsp return a * b;</li>
+                <li>}</li>
+                <li></li>
+                <li>multiply(5); // 5</li>
+            </ul>
+            <hr>
+            <h4>Rest parameters</h4>
+            <p>The rest parameter syntax allows us to represent an indefinite number of arguments as an array.</p>
+            <ul>
+                <li>function multiply(multiplier, ...theArgs) {</li>
+                <li>&nbsp&nbsp return theArgs.map(x => multiplier * x);</li>
+                <li>}</li>
+                <li></li>
+                <li>var arr = multiply(2, 1, 2, 3);</li>
+                <li>console.log(arr); // [2, 4, 6]</li>
+            </ul>
+            <hr>
+            <h4>Arrow functions</h4>
+            <p>An arrow function expression (previously, and now incorrectly known as fat arrow function) has a shorter syntax compared to function expressions and does not have its own this, arguments, super, or new.target.</p>
+            <h5>Shorter functions</h5>
+            <ul>In some functional patterns, shorter functions are welcome. Compare:
+                <li>var a = [</li>
+                <li>&nbsp&nbsp 'Hydrogen',</li>
+                <li>&nbsp&nbsp 'Helium',</li>
+                <li>&nbsp&nbsp 'Lithium',</li>
+                <li>&nbsp&nbsp 'Beryllium'</li>
+                <li>];</li>
+                <li></li>
+                <li>var a2 = a.map(function(s) { return s.length; });</li>
+                <li></li>
+                <li>console.log(a2); // logs [8, 6, 7, 9]</li>
+                <li></li>
+                <li>var a3 = a.map(s => s.length);</li>
+                <li></li>
+                <li>console.log(a3); // logs [8, 6, 7, 9]</li>
+            </ul>
+            <hr>
+            <h4>Predefined functions</h4>
+            <p>JavaScript has several top-level, built-in functions:</p>
+            <hr>
+            <h4>eval()</h4>
+            <p>The eval() method evaluates JavaScript code represented as a string.</p>
+            <ul>JavaScript Demo: Standard built-in objects - eval()
+                <li>console.log(eval('2 + 2'));</li>
+                <li>// expected output: 4</li>
+                <li></li>
+                <li>console.log(eval(new String('2 + 2')));</li>
+                <li>// expected output: 2 + 2</li>
+                <li></li>
+                <li>console.log(eval('2 + 2') === eval('4'));</li>
+                <li>// expected output: true</li>
+                <li></li>
+                <li>console.log(eval('2 + 2') === eval(new String('2 + 2')));</li>
+                <li>// expected output: false</li>
+                <li></li>
+            </ul>
+            <hr>
+            <h4>uneval()</h4>
+            <p>The uneval() method creates a string representation of the source code of an Object.            </p>
+            <ul>Using uneval
+                <li>var a = 1;</li>
+                <li>uneval(a); // returns a String containing 1</li>
+            </ul>
+            <hr>
+            <h4>isFinite()</h4>
+            <p>The global isFinite() function determines whether the passed value is a finite number.</p>
+            <p> If needed, the parameter is first converted to a number.</p>
+            <ul>JavaScript Demo: Standard built-in objects - isFinite()
+                <li>function div(x) {</li>
+                <li>&nbsp&nbsp  if (isFinite(1000 / x)) {</li>
+                <li>&nbsp&nbsp&nbsp return 'Number is NOT Infinity.';</li>
+                <li></li>
+                <li>&nbsp&nbsp return 'Number is Infinity!';</li>
+                <li>}</li>
+                <li></li>
+                <li>console.log(div(0));</li>
+                <li>// expected output: "Number is Infinity!""</li>
+                <li></li>
+                <li>console.log(div(1));</li>
+                <li>
+                    // expected output: "Number is NOT Infinity."</li>
+            </ul>
+            <hr>
+
+
+
+
+
+
+
+
+            <a class="btn btn-primary btn-lg" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite" role="button">Learn more</a>
+          </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
